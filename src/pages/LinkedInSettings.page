@@ -1,0 +1,32 @@
+<apex:page controller="LinkedInController">
+    <style type="text/css">
+        .Messages { color: red; font-weight: strong;}
+        .Width400 {width:400px; font:black;white-space:nowrap;font-weight: strong;}
+        .Width200 {width:200px; font:black;white-space:nowrap;font-weight: strong;}
+        .Width50 {width:50px; font:black;white-space:nowrap;font-weight: strong;}
+    </style>    
+    <apex:form id="theForm">
+    <apex:messages id="msgs" styleClass="Messages"/>
+    <table width="100%">
+        <tr>
+            <td align="left">
+                <apex:image url="{!URLFOR($Resource.LinkedInLogo)}" width="200" height="60"/>
+            </td>
+            <td align="right">
+                <br/>           
+                <b><apex:commandLink rendered="{!userAuthorized}" style="color:blue" action="{!userAuthorize}">Reset LinkedIn Login and authorization</apex:commandLink></b>
+            </td>
+        </tr>
+    </table>
+    <apex:outputPanel rendered="{!!userAuthorized}">
+    <br/><br/><br/><br/>
+        <b>Please authorize Salesforce to access your LinkedIn Account by clicking on <apex:commandLink style="color:blue" action="{!userAuthorize}">this link.</apex:commandLink><br/> 
+        Salesforce will NOT store your LinkedIn credentials.</b>
+    </apex:outputPanel>
+
+    <apex:outputPanel rendered="{!userAuthorized}">
+    <br/><br/><br/><br/>
+        <b>All good. You've successfully authenticated and authorized with LinkedIn</b> 
+	</apex:outputPanel>
+    </apex:form>
+</apex:page>
